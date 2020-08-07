@@ -55,7 +55,7 @@ def weighted_softmax(activations, strengths, strengths_op):
   return softmax(sharp_activations)
 
 
-class CosineWeights(snt.AbstractModule):
+class CosineWeights(snt.Module):
   """Cosine-weighted attention.
 
   Calculates the cosine similarity between a query and each word in memory, then
