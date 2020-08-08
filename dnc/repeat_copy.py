@@ -112,7 +112,7 @@ def bitstring_readable(data, batch_size, model_output=None, whole_batch=False):
   return '\n' + '\n\n\n\n'.join(batch_strings)
 
 
-class RepeatCopy(snt.AbstractModule):
+class RepeatCopy(snt.Module):
   """Sequence data generator for the task of repeating a random binary pattern.
 
   When called, an instance of this class will return a tuple of tensorflow ops
