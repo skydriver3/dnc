@@ -75,7 +75,7 @@ class DNC(snt.RNNCore):
     self._state_size = DNCState(
         access_output=self._access_output_size,
         access_state=self._access.state_size,
-        controller_state=self._controller.state_size)
+        controller_state=self._controller._eff_hidden_size)
 
   def _clip_if_enabled(self, x):
     if self._clip_value > 0:
@@ -83,7 +83,7 @@ class DNC(snt.RNNCore):
     else:
       return x
 
-  def _build(self, inputs, prev_state):
+  def __class__(self, inputs, prev_state):
     """Connects the DNC core into the graph.
 
     Args:
@@ -135,8 +135,6 @@ class DNC(snt.RNNCore):
         access_output=tf.zeros(
             [batch_size] + self._access.output_size.as_list(), dtype))
   
-  def __call__(cls: Type[T], *args, **kwargs) -> T:
-    pass
   
   @property
   def state_size(self):
