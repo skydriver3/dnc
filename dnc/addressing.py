@@ -130,7 +130,7 @@ class TemporalLinkage(snt.RNNCore):
     self._memory_size = memory_size
     self._num_writes = num_writes
 
-  def _build(self, write_weights, prev_state):
+  def __call__(self, write_weights, prev_state):
     """Calculate the updated linkage state given the write weights.
 
     Args:
@@ -238,7 +238,12 @@ class TemporalLinkage(snt.RNNCore):
     with tf.name_scope('precedence_weights'):
       write_sum = tf.reduce_sum(write_weights, 2, keepdims=True)
       return (1 - write_sum) * prev_precedence_weights + write_weights
-
+  
+  def initial_state(self, batch_size, dtype=tf.float32) : 
+    return TemporalLinkageState(
+        link=tf.zeros([batch_size, self._num_writes, self._memory_size, self._memory_size], dtype=dtype) , 
+        precedence_weights=tf.zeros([batch_size, self._num_writes, self._memory_size], dtype=dtype) ) 
+  
   @property
   def state_size(self):
     """Returns a `TemporalLinkageState` tuple of the state tensors' shapes."""
