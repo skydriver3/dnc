@@ -22,12 +22,15 @@ import collections
 import sonnet as snt
 import tensorflow as tf
 
+from typing import Type, TypeVar 
+
 from dnc import addressing
 from dnc import util
 
 AccessState = collections.namedtuple('AccessState', (
     'memory', 'read_weights', 'write_weights', 'linkage', 'usage'))
 
+T = TypeVar("T") 
 
 def _erase_and_write(memory, address, reset_weights, values):
   """Module to erase and write in the external memory.
@@ -109,6 +112,9 @@ class MemoryAccess(snt.RNNCore):
 
     self._linkage = addressing.TemporalLinkage(memory_size, num_writes)
     self._freeness = addressing.Freeness(memory_size)
+  
+  def __call__(cls: Type[T], *args, **kwargs) -> T:
+    pass
 
   def _build(self, inputs, prev_state):
     """Connects the MemoryAccess module into the graph.
