@@ -313,8 +313,8 @@ class MemoryAccess(snt.RNNCore):
         memory=tf.zeros([batch_size, self._memory_size, self._word_size], dtype=dtype), 
         read_weights=tf.zeros([batch_size, self._num_reads, self._memory_size], dtype=dtype),
         write_weights=tf.zeros([batch_size, self._num_writes, self._memory_size], dtype=dtype),
-        linkage=tf.zeros([self.state_size.linkage], dtype=dtype),
-        usage=tf.zeros([self.state_size.usage], dtype=dtype))
+        linkage=tf.zeros([batch_size, self.state_size.linkage], dtype=dtype),
+        usage=tf.zeros([batch_size, self.state_size.usage], dtype=dtype))
   
   @property
   def state_size(self):
