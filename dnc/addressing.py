@@ -251,7 +251,7 @@ class TemporalLinkage(snt.RNNCore):
         link=tf.TensorShape(
             [self._num_writes, self._memory_size, self._memory_size]).as_list(),
         precedence_weights=tf.TensorShape([self._num_writes,
-                                           self._memory_size]).to_list()) 
+                                           self._memory_size]).as_list()) 
 
 
 class Freeness(snt.RNNCore):
