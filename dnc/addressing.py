@@ -410,7 +410,7 @@ class Freeness(snt.RNNCore):
       return util.batch_gather(sorted_allocation, inverse_indices)
   
   def initial_state(self, batch_size, dtype=tf.float32) : 
-    return tf.zeros([batch_size, self.memory_size], dtype=dtype)
+    return tf.zeros([batch_size, self._memory_size], dtype=dtype)
   
   @property
   def state_size(self):
