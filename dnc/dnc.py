@@ -83,7 +83,7 @@ class DNC(snt.RNNCore):
     else:
       return x
 
-  def __class__(self, inputs, prev_state):
+  def __call__(self, inputs, prev_state):
     """Connects the DNC core into the graph.
 
     Args:
