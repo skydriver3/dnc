@@ -248,10 +248,8 @@ class TemporalLinkage(snt.RNNCore):
   def state_size(self):
     """Returns a `TemporalLinkageState` tuple of the state tensors' shapes."""
     return TemporalLinkageState(
-        link=tf.TensorShape(
-            [self._num_writes, self._memory_size, self._memory_size]).as_list(),
-        precedence_weights=tf.TensorShape([self._num_writes,
-                                           self._memory_size]).as_list()) 
+        link=[self._num_writes, self._memory_size, self._memory_size],
+        precedence_weights=[self._num_writes,self._memory_size] ) 
 
 
 class Freeness(snt.RNNCore):
@@ -415,4 +413,4 @@ class Freeness(snt.RNNCore):
   @property
   def state_size(self):
     """Returns the shape of the state tensor."""
-    return tf.TensorShape([self._memory_size]).as_list()
+    return [self._memory_size]

@@ -320,9 +320,9 @@ class MemoryAccess(snt.RNNCore):
   def state_size(self):
     """Returns a tuple of the shape of the state tensors."""
     return AccessState(
-        memory=tf.TensorShape([self._memory_size, self._word_size]).as_list(),
-        read_weights=tf.TensorShape([self._num_reads, self._memory_size]).as_list(),
-        write_weights=tf.TensorShape([self._num_writes, self._memory_size]).as_list(),
+        memory=[self._memory_size, self._word_size],
+        read_weights=[self._num_reads, self._memory_size],
+        write_weights=[self._num_writes, self._memory_size],
         linkage=self._linkage.state_size,
         usage=self._freeness.state_size)
 
