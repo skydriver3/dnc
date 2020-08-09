@@ -317,14 +317,14 @@ class MemoryAccess(snt.RNNCore):
         usage=self._freeness.initial_state(batch_size, dtype) ) 
   
   @property
-  def state_size(self):
-    """Returns a tuple of the shape of the state tensors."""
-    return AccessState(
-        memory=[self._memory_size, self._word_size],
-        read_weights=[self._num_reads, self._memory_size],
-        write_weights=[self._num_writes, self._memory_size],
-        linkage=self._linkage.state_size,
-        usage=self._freeness.state_size)
+  # def state_size(self):
+  #   """Returns a tuple of the shape of the state tensors."""
+  #   return AccessState(
+  #       memory=[self._memory_size, self._word_size],
+  #       read_weights=[self._num_reads, self._memory_size],
+  #       write_weights=[self._num_writes, self._memory_size],
+  #       linkage=self._linkage.state_size,
+  #       usage=self._freeness.state_size)
 
   @property
   def output_size(self):
