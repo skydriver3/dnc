@@ -132,7 +132,10 @@ class DNC(snt.RNNCore):
         access_state=self._access.initial_state(batch_size, dtype),
         access_output=tf.zeros(
             [batch_size] + self._access.output_size.as_list(), dtype))
-
+  
+  def __call__(cls: Type[T], *args, **kwargs) -> T:
+    pass
+  
   @property
   def state_size(self):
     return self._state_size
