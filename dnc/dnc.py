@@ -83,7 +83,7 @@ class DNC(snt.RNNCore):
     else:
       return x
 
-  def __call__(self, inputs, prev_state):
+  def _build(self, inputs, prev_state):
     """Connects the DNC core into the graph.
 
     Args:
@@ -135,6 +135,8 @@ class DNC(snt.RNNCore):
         access_output=tf.zeros(
             [batch_size] + self._access.output_size.as_list(), dtype))
   
+  def __call__(cls, *args, **kwargs) : 
+    pass
   
   @property
   def state_size(self):
