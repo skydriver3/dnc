@@ -144,8 +144,6 @@ class DNC(snt.RNNCore):
   # def __call__(self, cls, *args, **kwargs) : 
   #   pass
   
-  def build(self, input_shape) : 
-    pass
 
   @property
   def state_size(self):
