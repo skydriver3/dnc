@@ -83,6 +83,9 @@ class DNC(snt.RNNCore):
     else:
       return x
 
+  def call(self, inputs, states) : 
+    return self.__call__(inputs, states) 
+
   def __call__(self, inputs, prev_state):
     """Connects the DNC core into the graph.
 
@@ -128,6 +131,8 @@ class DNC(snt.RNNCore):
         access_state=access_state,
         controller_state=controller_state)
 
+  def get_initial_state(self, inputs=None, batch_size=None, dtype=None) : 
+    return self.initial_state(batch_size, dtype)
 
   def initial_state(self, batch_size, dtype=tf.float32):
     return DNCState(
@@ -139,6 +144,9 @@ class DNC(snt.RNNCore):
   # def __call__(self, cls, *args, **kwargs) : 
   #   pass
   
+  def build(self, input_shape) : 
+    pass
+
   @property
   def state_size(self):
     return self._state_size
