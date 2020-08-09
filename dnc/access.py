@@ -307,7 +307,15 @@ class MemoryAccess(snt.RNNCore):
           tf.reduce_sum(tf.expand_dims(backward_mode, 3) * backward_weights, 2))
 
       return read_weights
-
+  
+  def initial_state(self, batch_size, dtype=tf.float32) : 
+    return AccessState(
+        memory=tf.zeros([batch_size, self._memory_size, self._word_size], dtype=dtype), 
+        read_weights=tf.zeros([batch_size, self._num_reads, self._memory_size], dtype=dtype),
+        write_weights=tf.zeros([batch_size, self._num_writes, self._memory_size], dtype=dtype),
+        linkage=tf.zeros([self.state_size.linkage], dtype=dtype),
+        usage=tf.zeros([self.state_size.usage], dtype=dtype))
+  
   @property
   def state_size(self):
     """Returns a tuple of the shape of the state tensors."""
