@@ -281,7 +281,7 @@ class Freeness(snt.RNNCore):
     super(Freeness, self).__init__(name=name)
     self._memory_size = memory_size
 
-  def _build(self, write_weights, free_gate, read_weights, prev_usage):
+  def __call__(self, write_weights, free_gate, read_weights, prev_usage):
     """Calculates the new memory usage u_t.
 
     Memory that was written to in the previous time step will have its usage
@@ -408,7 +408,10 @@ class Freeness(snt.RNNCore):
       # This final line "unsorts" sorted_allocation, so that the indexing
       # corresponds to the original indexing of `usage`.
       return util.batch_gather(sorted_allocation, inverse_indices)
-
+  
+  def initial_state(self, batch_size, dtype=tf.float32) : 
+    return tf.zeros([batch_size, self.memory_size], dtype=dtype)
+  
   @property
   def state_size(self):
     """Returns the shape of the state tensor."""
