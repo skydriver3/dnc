@@ -248,9 +248,9 @@ class TemporalLinkage(snt.RNNCore):
   @property
   def state_size(self):
     """Returns a `TemporalLinkageState` tuple of the state tensors' shapes."""
-    return TemporalLinkageState(
+    return list(TemporalLinkageState(
         link=np.prod([self._num_writes, self._memory_size, self._memory_size]),
-        precedence_weights=np.prod([self._num_writes,self._memory_size] ))._asdict().values() 
+        precedence_weights=np.prod([self._num_writes,self._memory_size] ))) 
 
 
 class Freeness(snt.RNNCore):
