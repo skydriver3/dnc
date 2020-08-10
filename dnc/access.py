@@ -324,7 +324,7 @@ class MemoryAccess(snt.RNNCore):
         read_weights=np.prod([self._num_reads, self._memory_size]),
         write_weights=np.prod([self._num_writes, self._memory_size]),
         linkage=self._linkage.state_size,
-        usage=self._freeness.state_size)
+        usage=self._freeness.state_size)._asdict().values()
 
   @property
   def output_size(self):
