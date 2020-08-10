@@ -113,10 +113,9 @@ class MemoryAccess(snt.RNNCore):
     self._linkage = addressing.TemporalLinkage(memory_size, num_writes)
     self._freeness = addressing.Freeness(memory_size)
   
-  def __call__(cls: Type[T], *args, **kwargs) -> T:
-    pass
 
-  def _build(self, inputs, prev_state):
+
+  def __call__(self, inputs, prev_state):
     """Connects the MemoryAccess module into the graph.
 
     Args:
@@ -316,7 +315,7 @@ class MemoryAccess(snt.RNNCore):
         linkage=self._linkage.initial_state(batch_size, dtype) , 
         usage=self._freeness.initial_state(batch_size, dtype) ) 
   
-  @property
+  #@property
   # def state_size(self):
   #   """Returns a tuple of the shape of the state tensors."""
   #   return AccessState(
