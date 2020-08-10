@@ -74,7 +74,7 @@ class DNC(snt.RNNCore):
     self._output_size = tf.TensorShape([output_size])
     self._state_size = DNCState(
         access_output=self._access_output_size,
-        access_state=self._access.state_size,
+        access_state=np.prod(self._access.state_size),
         controller_state=self._controller._eff_hidden_size)
 
   def _clip_if_enabled(self, x):
